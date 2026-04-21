@@ -1,7 +1,9 @@
 "use client";
 
+import saumittra from "@/public/saumittra.png";
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
@@ -66,7 +68,11 @@ export default function Hero() {
             <div className="absolute inset-0 bg-linear-to-br from-blue-600 to-indigo-600 rounded-3xl -rotate-3 opacity-10" />
             <div className="relative h-full w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-100 dark:border-slate-700 flex items-center justify-center">
               <span className="text-slate-300 dark:text-slate-600 text-9xl font-bold">
-                JD
+                <Image
+                  src={saumittra}
+                  alt="Saumittra"
+                  className="w-full h-full  object-cover"
+                />
               </span>
             </div>
           </div>
