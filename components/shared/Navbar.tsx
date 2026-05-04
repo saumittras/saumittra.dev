@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -17,6 +18,8 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,13 +38,23 @@ export default function Navbar() {
           : "bg-transparent",
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-2xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
-        >
-          saumittra.dev
-        </Link>
+      <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
+        <div className="flex items-center gap-4">
+          {isAdmin && (
+            <button
+              className="lg:hidden text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              onClick={() => window.dispatchEvent(new Event("toggleAdminMenu"))}
+            >
+              <Menu size={24} />
+            </button>
+          )}
+          <Link
+            href="/"
+            className="text-2xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+          >
+            saumittra.dev
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">

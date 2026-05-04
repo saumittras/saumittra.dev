@@ -14,7 +14,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data } = await fetchApi("/projects");
+        const { data } = await fetchApi("/project");
         if (data?.data) {
           setProjects(
             Array.isArray(data.data) ? data.data : data.data.data || [],
